@@ -1,12 +1,12 @@
 import { Component } from "react";
-import axios from "axios";
-import Navibar from "./Navbar";
+import Navbar from "./Navbar";
 import Profile from "./Profile";
 import Repo from "./Repo";
 
+
 class App extends Component{
 
-  constructor(){
+  constructor(){  
     super();
     this.state = {
       gitHub: {
@@ -26,14 +26,13 @@ class App extends Component{
     const user = e.target.value;
 
     const {url, client_id, client_secret} = this.state.gitHub;
-
-        axios
-        .get(
+    
+        
+        fetch(
             `${url}/${user}?client_id=${client_id}&client_secret=${client_secret}`
             ).then(({data}) => this.setState({user: data}));
 
-        axios
-        .get(
+        fetch(
           `${url}/${user}/repos?client_id=${client_id}&client_secret=${client_secret}`
           ).then(({data}) => this.setState({repos: data}));
   };
@@ -49,6 +48,7 @@ class App extends Component{
             <Profile user={user}/>
         </div>
         <div className="col-md-8">
+          
             {repos.map(repo => (
               <Repo key={repo.name} repo={repo} />
             ))}
@@ -58,10 +58,10 @@ class App extends Component{
   }
 
   render(){
-    const { user } = this.state;
+   
     return (
       <div className="App">
-        <Navibar />
+        <Navbar />   
 
         <div className="container">
           <div className="card card-body">
@@ -71,13 +71,11 @@ class App extends Component{
               </p>
               <input id="search" onChange={this.getUser} type="text" className="form-control" required />
           </div>
-              { user.length !==0 ? this.renderProfile() : null}
-      </div>
+              {this.state.user !==0 ? this.renderProfile() : null}
+      </div>   
     </div>
     );
-
-  }
   
+  }
 }
-
 export default App;

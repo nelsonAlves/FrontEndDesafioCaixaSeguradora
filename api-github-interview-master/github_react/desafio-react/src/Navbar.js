@@ -1,12 +1,12 @@
 import React from "react";
 
 
-const Navibar = () =>(
+const Navbar = () =>(
     <div className="navbar navbar-dark bg-info mb-3">
         <div className="container">
-            <a href="#" className="navibar-brand">Desafio Caixa Seguradora</a>
+            <a href="#" className="navbar-brand">Desafio Caixa Seguradora</a>
         </div>         
     </div>
 );
 
-export default Navibar;
+export default Navbar;
